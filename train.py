@@ -1,4 +1,4 @@
-from util2 import loadPrepareData, trimRareWords, tagger
+from util2 import loadPrepareData, trimRareWords, tagger, pairsToSequences
 import pathlib
 import os
 
@@ -13,8 +13,9 @@ keep_pairs, voc = trimRareWords(voc, pairs, MIN_COUNT)
 for pair in keep_pairs:
 	pair[1] = tagger(pair[1])
 	# pair = padding(pair, 10)
-	
-	
+
+keep_pairs = pairsToSequences(keep_pairs, voc)
+
 # Print some pairs to validate
 print("\npairs:")
 for pair in keep_pairs[:10]:

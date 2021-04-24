@@ -299,6 +299,19 @@ def embedding_layer(
 	return embedding_layer
 
 
+def textToSequence(sent, voc):
+	seq = []
+	words = sent.split(" ")
+	for word in words:
+		seq.append(voc.word2index.get(word))
+	return seq
+
+def pairsToSequences(pairs, voc):
+	for pair in pairs:
+		pair[0] = textToSequence(pair[0], voc)
+		pair[1] = textToSequence(pair[1], voc)
+	return pairs
+
 
 
 if __name__ == "__main__":
